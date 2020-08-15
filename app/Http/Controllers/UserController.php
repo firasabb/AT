@@ -12,6 +12,7 @@ use Storage;
 use Illuminate\Support\Arr;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -28,8 +29,10 @@ class UserController extends Controller
     public function showProfile($username){
 
         $user = User::where('username', $username)->firstOrFail();
-        $activeAssets = $user->activeAssets;
-        return view('users.profile', ['user' => $user, 'activeAssets' => $activeAssets]);
+        $approvedAssets = $user->approvedAssets;
+        $categories = DB::table('assets')->select('categories.*')->distinct()->where([['user_id', $user->id], ['status', 2]])->join('categories', 'assets.category_id', '=', 'categories.id')->get();
+        $dashboard = false;
+        return view('users.profile', ['user' => $user, 'approvedAssets' => $approvedAssets, 'categories' => $categories, 'dashboard' => $dashboard]);
 
     }
 
@@ -37,8 +40,10 @@ class UserController extends Controller
     public function showMyProfile(){
 
         $user = Auth::user();
-        $activeAssets = $user->activeAssets;
-        return view('users.myProfile', ['user' => $user, 'activeAssets' => $activeAssets]);
+        $approvedAssets = $user->approvedAssets;
+        $categories = DB::table('assets')->select('categories.*')->distinct()->where([['user_id', $user->id], ['status', 2]])->join('categories', 'assets.category_id', '=', 'categories.id')->get();
+        $dashboard = true;
+        return view('users.profile', ['user' => $user, 'approvedAssets' => $approvedAssets, 'categories' => $categories, 'dashboard' => $dashboard]);
 
     }
 
