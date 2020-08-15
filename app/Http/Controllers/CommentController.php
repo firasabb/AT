@@ -38,7 +38,7 @@ class CommentController extends Controller
         ]);
 
         if($validator->fails() || !$encryptedId){
-            return redirect()->back()->withErrors()->withInput();
+            return redirect()->back()->withErrors($validator)->withInput();
         }
         $asset = Asset::findOrFail(decrypt($encryptedId));
         $user = Auth::user();
