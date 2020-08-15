@@ -34,7 +34,7 @@ class CommentController extends Controller
     public function store($encryptedId, Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'body' => 'required|max:100',
+            'body' => 'required|max:1000',
         ]);
 
         if($validator->fails() || !$encryptedId){
