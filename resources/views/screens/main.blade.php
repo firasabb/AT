@@ -24,6 +24,7 @@
                         <select name="category" class="form-control">
                             <option value="all" selected>All Categories</option>
                             <option value="stock-photos">Stock Photos</option>
+                            <option value="stock-videos">Stock Videos</option>
                             <option value="sound-effects">Sound Effects</option>
                         </select>
                     </div>
@@ -65,6 +66,22 @@
     </div>
     <div class="pt-5 text-center">
         <a class="btn btn-primary" href="{{ route('main.search.categories', ['category' => 'sound-effects']) }}">View All</a>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="pb-4">
+        <h3>Latest Stock Videos</h3>
+    </div>
+    <div class="card-columns">
+        @foreach($stockVideoAssets as $asset)
+            <div class="pb-4">
+                <x-asset-card :asset="$asset"/>
+            </div>
+        @endforeach
+    </div>
+    <div class="pt-5 text-center">
+        <a class="btn btn-primary" href="{{ route('main.search.categories', ['category' => 'stock-videos']) }}">View All</a>
     </div>
 </div>
 

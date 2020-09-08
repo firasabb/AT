@@ -73,6 +73,9 @@
                             <a class="nav-link" href="{{ route('main.search.categories', ['category' => 'stock-photos']) }}">Stock Photos</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('main.search.categories', ['category' => 'stock-videos']) }}">Stock Videos</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('main.search.categories', ['category' => 'sound-effects']) }}">Sound Effects</a>
                         </li>
                     </ul>

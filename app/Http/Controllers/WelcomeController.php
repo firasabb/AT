@@ -22,8 +22,10 @@ class WelcomeController extends Controller
         $stockPhotoAssets = $stockPhotoCat->approvedAssets()->orderBy('id', 'desc')->take(9)->get();
         $soundEffectCat = Category::where('name', 'LIKE' ,'sound effects')->first();
         $soundEffectAssets = $soundEffectCat->approvedAssets()->orderBy('id', 'desc')->take(9)->get();
+        $stockVideoCat = Category::where('name', 'LIKE' ,'stock videos')->first();
+        $stockVideoAssets = $stockVideoCat->approvedAssets()->orderBy('id', 'desc')->take(9)->get();
         $categories = Category::all();
-        return view('screens.main', ['stockPhotoAssets' => $stockPhotoAssets, 'soundEffectAssets' => $soundEffectAssets, 'categories' => $categories]);
+        return view('screens.main', ['stockPhotoAssets' => $stockPhotoAssets, 'soundEffectAssets' => $soundEffectAssets, 'stockVideoAssets' => $stockVideoAssets, 'categories' => $categories]);
 
     }
 
